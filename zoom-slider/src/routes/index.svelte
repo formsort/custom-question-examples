@@ -9,6 +9,7 @@
 	const darkColor = 'ED7032';
 
 	let selectedValue: number | undefined = undefined;
+	let hoverValue: number | undefined = undefined;
 
 	const scale = chroma.scale([lightColor, darkColor]);
 
@@ -32,14 +33,16 @@
 	}
 </script>
 
-<div role="radiogroup">
+<div role="radiogroup" on:mouseleave={() => (hoverValue = undefined)}>
 	{#each values as value, idx}
 		<button
 			role="radio"
 			aria-checked="false"
 			style={`color: ${scale(idx / (max - min))}`}
-			class:neighbor={selectedValue != null && Math.abs(selectedValue - value) === 1}
-			class:selected={value === selectedValue}
+			class:neighbor={(selectedValue != null && Math.abs(selectedValue - value) === 1) ||
+				(hoverValue != null && Math.abs(hoverValue - value) === 1)}
+			class:selected={value === selectedValue || value === hoverValue}
+			on:mouseenter={() => (hoverValue = value)}
 			on:click={() => toggleValue(value)}
 		>
 			{value}
@@ -48,15 +51,18 @@
 </div>
 
 <style>
+	:global(body) {
+		margin: 0;
+	}
+
 	div {
 		display: flex;
-		gap: 4px;
 	}
 
 	button {
 		background: transparent;
 		border: none;
-		display: block;
+		display: inline;
 		width: 120px;
 		height: 50px;
 		transition: all 0.1s ease-in-out;
@@ -65,17 +71,18 @@
 		align-items: flex-end;
 		opacity: 0.5;
 		padding: 0;
+		cursor: pointer;
+	}
+
+	button.neighbor {
+		font-size: 105%;
+		opacity: 0.6;
+		transform: translateY(0.5%);
 	}
 
 	button.selected {
 		font-size: 200%;
 		opacity: 1;
 		transform: translateY(7.5%);
-	}
-
-	button.neighbor {
-		font-size: 120%;
-		opacity: 0.6;
-		transform: translateY(0.5%);
 	}
 </style>
