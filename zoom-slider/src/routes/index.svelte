@@ -1,9 +1,24 @@
 <script lang="ts">
+	import { setAnswerValue, getAnswerValue, clearAnswerValue } from '@formsort/custom-question-api';
+	import { onMount } from 'svelte';
+
 	const min = 1;
 	const max = 10;
-
-	// TODO: Get from Formsort the current value
 	let selectedValue: number | undefined = undefined;
+
+	onMount(async () => {
+		selectedValue = await getAnswerValue();
+	});
+
+	const toggleValue = (newValue: number) => {
+		if (selectedValue != null && newValue === selectedValue) {
+			selectedValue = undefined;
+			clearAnswerValue();
+		} else {
+			selectedValue = newValue;
+			setAnswerValue(newValue);
+		}
+	};
 
 	const values: number[] = [];
 	for (let i = min; i <= max; i++) {
@@ -16,8 +31,9 @@
 		<button
 			role="radio"
 			aria-checked="false"
+			class:neighbor={selectedValue != null && Math.abs(selectedValue - value) === 1}
 			class:selected={value === selectedValue}
-			on:click={() => (selectedValue = value)}
+			on:click={() => toggleValue(value)}
 		>
 			{value}
 		</button>
@@ -40,6 +56,10 @@
 	}
 
 	button.selected {
-		font-size: 150%;
+		font-size: 175%;
+	}
+
+	button.neighbor {
+		font-size: 105%;
 	}
 </style>
