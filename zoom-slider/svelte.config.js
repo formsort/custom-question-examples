@@ -11,7 +11,10 @@ const config = {
 		adapter: adapter(),
 		prerender: {
       default: true
-    }
+    },
+		paths: {
+      base: '/custom-question-examples/zoom-slider/build'
+    },
 	}
 };
 
