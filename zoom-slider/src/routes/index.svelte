@@ -17,13 +17,38 @@
 		selectedValue = await getAnswerValue();
 	});
 
+	const clearValue = () => {
+		selectedValue = undefined;
+		clearAnswerValue();
+	};
+
+	const setValue = (newValue: number) => {
+		selectedValue = newValue;
+		setAnswerValue(newValue);
+	};
+
 	const toggleValue = (newValue: number) => {
 		if (selectedValue != null && newValue === selectedValue) {
-			selectedValue = undefined;
-			clearAnswerValue();
+			clearValue();
 		} else {
-			selectedValue = newValue;
-			setAnswerValue(newValue);
+			setValue(newValue);
+		}
+	};
+
+	const onTouchMove = (e: TouchEvent) => {
+		e.preventDefault();
+		const location = e.changedTouches[0];
+		const target = document.elementFromPoint(location.clientX, location.clientY);
+		if (!target) {
+			return;
+		}
+		const datasetValue = (target as HTMLElement).dataset['zoomSliderValue'];
+		if (!datasetValue) {
+			return;
+		}
+		const newValue = parseInt(datasetValue);
+		if (newValue !== selectedValue) {
+			setValue(newValue);
 		}
 	};
 
@@ -33,11 +58,12 @@
 	}
 </script>
 
-<div role="radiogroup" on:mouseleave={() => (hoverValue = undefined)}>
+<div on:mouseleave={() => (hoverValue = undefined)} on:touchmove={onTouchMove}>
 	{#each values as value, idx}
 		<button
 			role="radio"
 			aria-checked="false"
+			data-zoom-slider-value={value}
 			style={`color: ${scale(idx / (max - min))}`}
 			class:neighbor={(selectedValue != null && Math.abs(selectedValue - value) === 1) ||
 				(hoverValue != null && Math.abs(hoverValue - value) === 1)}
