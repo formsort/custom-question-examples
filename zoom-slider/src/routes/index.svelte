@@ -23,6 +23,7 @@
 	};
 
 	const setValue = (newValue: number) => {
+		hoverValue = undefined;
 		selectedValue = newValue;
 		setAnswerValue(newValue);
 	};
@@ -90,13 +91,13 @@
 		border: none;
 		display: inline;
 		width: 120px;
-		height: 50px;
+		height: 70px;
+		padding: 0 0 20px 0;
 		transition: all 0.1s ease-in-out;
 		display: flex;
 		justify-content: center;
 		align-items: flex-end;
 		opacity: 0.5;
-		padding: 0;
 		cursor: pointer;
 	}
 
@@ -107,7 +108,7 @@
 	}
 
 	button.selected {
-		font-size: 200%;
+		font-size: 250%;
 		opacity: 1;
 		transform: translateY(7.5%);
 	}
