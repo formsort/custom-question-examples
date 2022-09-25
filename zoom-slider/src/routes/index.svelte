@@ -5,8 +5,9 @@
 
 	const min = 1;
 	const max = 10;
-	const lightColor = '7A9AC4';
-	const darkColor = 'ED7032';
+
+	const lightColor = 'BFD44F';
+	const darkColor = 'FF6200';
 
 	let selectedValue: number | undefined = undefined;
 	let hoverValue: number | undefined = undefined;
@@ -87,11 +88,13 @@
 	}
 
 	button {
+		/* outline: 1px solid red; */
 		background: transparent;
 		border: none;
 		display: inline;
+		font-size: 12px;
 		width: 120px;
-		height: 70px;
+		height: 85px;
 		padding: 0 0 20px 0;
 		transition: all 0.1s ease-in-out;
 		display: flex;
@@ -108,8 +111,8 @@
 	}
 
 	button.selected {
-		font-size: 250%;
+		font-size: 80px;
 		opacity: 1;
-		transform: translateY(7.5%);
+		transform: translateY(20%);
 	}
 </style>
