@@ -74,13 +74,13 @@
 	</style>
 </svelte:head>
 
-<div on:mouseleave={() => (hoverValue = undefined)} on:touchmove={onTouchMove}>
+<div on:mouseleave={() => (hoverValue = undefined)} on:touchmove={onTouchMove} class="buttons">
 	{#each values as value, idx}
 		<button
 			role="radio"
 			aria-checked="false"
 			data-zoom-slider-value={value}
-			style={`color: ${scale(idx / (max - min))}`}
+			style={`color: ${scale(idx / (max - min))}; width: ${(1 / values.length) * 100}%`}
 			class:neighbor={(selectedValue != null && Math.abs(selectedValue - value) === 1) ||
 				(hoverValue != null && Math.abs(hoverValue - value) === 1)}
 			class:selected={value === selectedValue || value === hoverValue}
@@ -112,17 +112,15 @@
 		font-weight: 400;
 	}
 
-	div {
+	div.buttons {
 		display: flex;
 	}
 
 	button {
-		/* outline: 1px solid red; */
 		background: transparent;
 		border: none;
 		display: inline;
 		font-size: 12px;
-		width: 120px;
 		height: 85px;
 		padding: 0 0 20px 0;
 		transition: all 0.1s ease-in-out;
@@ -148,6 +146,5 @@
 	.labels {
 		display: flex;
 		justify-content: space-between;
-		padding: 0 4%;
 	}
 </style>
