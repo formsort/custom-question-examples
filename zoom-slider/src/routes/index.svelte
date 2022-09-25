@@ -2,12 +2,21 @@
 	import { setAnswerValue, getAnswerValue, clearAnswerValue } from '@formsort/custom-question-api';
 	import { onMount } from 'svelte';
 	import chroma from 'chroma-js';
+	import { browser } from '$app/env';
 
 	const min = 1;
 	const max = 10;
 
 	const lightColor = 'BFD44F';
 	const darkColor = 'FF6200';
+
+	let minLabel: string | null;
+	let maxLabel: string | null;
+	if (browser) {
+		const searchParams = new URLSearchParams(window.location.search);
+		minLabel = searchParams.get('minLabel');
+		maxLabel = searchParams.get('maxLabel');
+	}
 
 	let selectedValue: number | undefined = undefined;
 	let hoverValue: number | undefined = undefined;
@@ -60,6 +69,11 @@
 	}
 </script>
 
+<svelte:head>
+	<style>
+	</style>
+</svelte:head>
+
 <div on:mouseleave={() => (hoverValue = undefined)} on:touchmove={onTouchMove}>
 	{#each values as value, idx}
 		<button
@@ -78,9 +92,24 @@
 	{/each}
 </div>
 
+{#if minLabel && maxLabel}
+	<div class="labels">
+		<div>{minLabel}</div>
+		<div>{maxLabel}</div>
+	</div>
+{/if}
+
 <style>
+	@font-face {
+		font-family: 'Roobert';
+		src: url('https://usercontent.formsort.com/Malla/85efaadc-b09b-4282-9e32-50aed80d2ada.otf')
+			format('opentype');
+	}
+
 	:global(body) {
 		margin: 0;
+		font-family: Roobert;
+		font-weight: 400;
 	}
 
 	div {
@@ -114,5 +143,11 @@
 		font-size: 80px;
 		opacity: 1;
 		transform: translateY(20%);
+	}
+
+	.labels {
+		display: flex;
+		justify-content: space-between;
+		padding: 0 4%;
 	}
 </style>
