@@ -74,13 +74,18 @@
 	</style>
 </svelte:head>
 
-<div on:mouseleave={() => (hoverValue = undefined)} on:touchmove={onTouchMove} class="buttons">
+<div
+	on:mouseleave={() => (hoverValue = undefined)}
+	on:touchmove={onTouchMove}
+	class="buttons"
+	style={`grid-template-columns: repeat(${values.length}, 1fr)`}
+>
 	{#each values as value, idx}
 		<button
 			role="radio"
 			aria-checked="false"
 			data-zoom-slider-value={value}
-			style={`color: ${scale(idx / (max - min))}; width: ${(1 / values.length) * 100}%`}
+			style={`color: ${scale(idx / (max - min))};`}
 			class:neighbor={(selectedValue != null && Math.abs(selectedValue - value) === 1) ||
 				(hoverValue != null && Math.abs(hoverValue - value) === 1)}
 			class:selected={value === selectedValue || value === hoverValue}
@@ -113,7 +118,7 @@
 	}
 
 	div.buttons {
-		display: flex;
+		display: grid;
 	}
 
 	button {
@@ -123,10 +128,11 @@
 		font-size: 12px;
 		height: 85px;
 		padding: 0 0 20px 0;
-		transition: all 0.1s ease-in-out;
+		transition: all 0.15s ease-in;
 		display: flex;
 		justify-content: center;
 		align-items: flex-end;
+		text-align: center;
 		opacity: 0.5;
 		cursor: pointer;
 	}
