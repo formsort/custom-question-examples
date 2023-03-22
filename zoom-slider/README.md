@@ -1,38 +1,36 @@
-# create-svelte
+# zoom-slider
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A formsort [custom question](https://github.com/formsort/oss/tree/master/packages/custom-question-api) implementing a funky, zoomy slider, written in [Svelte](https://svelte.dev).
 
-## Creating a project
+![Zoom slider in action](./docs/zoom-slider-demo.mp4)
 
-If you're seeing this, you've probably already done this step. Congrats!
+It's probably not a great UX, but it's flashy, and a nice example of what's possible with custom questions.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Usage
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+A built version of the question itself is hosted on Github Pages: https://formsort.github.io/custom-question-examples/zoom-slider/build/
+
+This can be set as the _Source URL_ for a [custom question] within the Formsort Studio, and should work out of the box. You may want to set the _Default width_ to 100% so that it takes up the full width of the form.
+
+If you want to customize and use this, you'll want to build and host it yourself.
+
+## Parameters
+
+The question can be used as-is, but can also be customizd by adding `minLabel` and `maxLabel` URL search parameters which will be used as range limits.
+
+As an example, loading with `?minLabel=Lowest&maxLabel=Highest` will look something like the following (see live):
+
+![](./docs/min-label-max-label.png)
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+yarn
+yarn dev
 ```
 
 ## Building
 
-To create a production version of your app:
-
 ```bash
-npm run build
+yarn build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
