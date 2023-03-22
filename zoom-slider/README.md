@@ -2,7 +2,7 @@
 
 A formsort [custom question](https://github.com/formsort/oss/tree/master/packages/custom-question-api) implementing a funky, zoomy slider, written in [Svelte](https://svelte.dev).
 
-[![Zoom slider in action](./docs/zoom-slider-demo.mp4)]
+![Zoom slider in action](./docs/zoom-slider-demo.gif)
 
 It's probably not a great UX, but it's flashy, and a nice example of what's possible with custom questions.
 
