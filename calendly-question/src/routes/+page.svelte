@@ -9,6 +9,8 @@
 
 	let calendlyEl: HTMLDivElement;
 
+	const prefillParameters = ['name', 'first_name', 'last_name', 'email'];
+
 	onMount(() => {
 		const params = new URLSearchParams(window.location.search);
 
@@ -23,10 +25,18 @@
 			return;
 		}
 
+		const prefill: Record<string, string> = {};
+		for (const param of prefillParameters) {
+			const value = params.get(param);
+			if (value != null) {
+				prefill[param] = value;
+			}
+		}
+
 		Calendly.initInlineWidget({
 			url,
 			parentElement: calendlyEl,
-			prefill: {}
+			prefill
 		});
 
 		window.addEventListener('message', function ({ origin, data }) {

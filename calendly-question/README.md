@@ -14,6 +14,12 @@ A built version of the question itself is hosted on Github Pages: https://formso
 1. The above URL can be set as the _Source URL_ for a [custom question](https://docs.formsort.com/building-flows/content-types/custom) within the Formsort Studio, and should work out of the box.
 1. The calendly embed is rather tall - you may want to set the _Default width_ to 100% so that it takes up the full width of the form, and the _Default height_ to something like 1000px. Unfortunately the official Calendly documentation does not offer a better solution to [removing scroll bars](https://help.calendly.com/hc/en-us/articles/360019861794-Common-embed-questions#3).
 
+## Parameters
+
+You can pass parameters like those that control [Hiding event details](https://help.calendly.com/hc/en-us/articles/223147027-Embed-options-overview?tab=advanced#5) directly in the URL.
+
+To pre-populate the user's name or email from data already collected within the form, you can set any of the URL search parameters `name`, `first_name`, `last_name`, or `email` using the Formsort templated string format, for example `?url=https://calendly.com/xyz/30min&email={{the_email}}`.
+
 ## Note on the scheduled event
 
 The answer that this question provides is a Calendly `scheduled_event` URL, that will look something like https://api.calendly.com/scheduled_events/b58878ef-6ab7-4a5a-9211-e9a3910f588c. This is not a publicly-accessible URL, but rather a reference to the scheduled event.
