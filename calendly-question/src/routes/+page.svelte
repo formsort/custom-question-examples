@@ -1,26 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { setAnswerValue, setQuestionSize } from '@formsort/custom-question-api';
+	import { setAnswerValue } from '@formsort/custom-question-api';
 
 	const CALENDLY_BASE_URL = 'https://calendly.com/';
 	const CALENDLY_URL_REGEX = new RegExp(`^${CALENDLY_BASE_URL}.+`);
 
-	const height = '800px';
-
 	let error: string;
 
 	let calendlyEl: HTMLDivElement;
-
-	const measureElement = () => {
-		setQuestionSize(undefined, 800);
-	};
 
 	onMount(() => {
 		const params = new URLSearchParams(window.location.search);
 
 		const url = params.get('url');
 		if (!url) {
-			error = 'You must provide a calendly URL as the  ?url= parameter';
+			error = 'You must provide a calendly URL as the ?url= parameter';
 			return;
 		}
 
@@ -40,9 +34,6 @@
 				return;
 			}
 
-			// TODO: Only call this on a "load" event?
-			measureElement();
-
 			if (data.event === 'calendly.event_scheduled') {
 				const eventUri = data.payload.event.uri;
 				setAnswerValue(eventUri);
@@ -61,5 +52,17 @@
 {#if error}
 	{error}
 {:else}
-	<div id="calendly" bind:this={calendlyEl} style:height />
+	<div id="calendly" bind:this={calendlyEl} />
 {/if}
+
+<style>
+	:global(body) {
+		margin: 0;
+	}
+
+	:global(html),
+	:global(body),
+	#calendly {
+		height: 100%;
+	}
+</style>

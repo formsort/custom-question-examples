@@ -10,7 +10,7 @@ It's probably not a great UX, but it's flashy, and a nice example of what's poss
 
 A built version of the question itself is hosted on Github Pages: https://formsort.github.io/custom-question-examples/zoom-slider/build/
 
-This can be set as the _Source URL_ for a [custom question] within the Formsort Studio, and should work out of the box. You may want to set the _Default width_ to 100% so that it takes up the full width of the form.
+This can be set as the _Source URL_ for a [custom question](https://docs.formsort.com/building-flows/content-types/custom) within the Formsort Studio, and should work out of the box. You may want to set the _Default width_ to 100% so that it takes up the full width of the form.
 
 If you want to customize and use this, you'll want to build and host it yourself.
 
