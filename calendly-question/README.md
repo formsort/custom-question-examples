@@ -18,7 +18,7 @@ A built version of the question itself is hosted on Github Pages: https://formso
 
 You can pass parameters like those that control [Hiding event details](https://help.calendly.com/hc/en-us/articles/223147027-Embed-options-overview?tab=advanced#5) directly in the URL.
 
-To pre-populate the user's name or email from data already collected within the form, you can set any of the URL search parameters `name`, `first_name`, `last_name`, or `email` using the Formsort templated string format, for example `?url=https://calendly.com/xyz/30min&email={{the_email}}`.
+To pre-populate the user's name or email from data already collected within the form, you can set any of the URL search parameters `name`, `firstName`, `lastName`, or `email` using the Formsort templated string format, for example `?url=https://calendly.com/xyz/30min&email={{the_email}}`.
 
 ## Note on the scheduled event
 

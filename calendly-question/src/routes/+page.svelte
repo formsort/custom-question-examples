@@ -9,7 +9,7 @@
 
 	let calendlyEl: HTMLDivElement;
 
-	const prefillParameters = ['name', 'first_name', 'last_name', 'email'];
+	const prefillParameters = ['name', 'firstName', 'lastName', 'email'];
 
 	onMount(() => {
 		const params = new URLSearchParams(window.location.search);
