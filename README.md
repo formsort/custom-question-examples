@@ -11,3 +11,7 @@ A repository of examples that use the [@formsort/custom-question-api](https://gi
 ## Scheduling
 
 - [Calendly](./calendly-question/) (Svelte)
+
+## Sizing
+
+- [Auto-height](./auto-height) (Vanilla HTML)

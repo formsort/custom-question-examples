@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ResizeObserver Example</title>
+	<script src="https://unpkg.com/@formsort/custom-question-api/umd/custom-question-api.min.js"></script>
+	<style>
+		body {
+			margin: 0;
+		}
+
+		main {
+			outline: 1px solid red;
+			background: #eee;
+		}
+
+	</style>
+</head>
+<body>
+  <p>Doc height <span id="height">0</span> pixels.</p>
+ 	<main contenteditable="true">
+		<p>Click in here, type things, or just press enter to resize the content.</p>
+		<p>
+			It will always fit nicely within any custom question, you should never see scrollbars
+		</p>
+	</main>
+  
+  <script>
+    function onBodyHeightChanged(entries) {
+      for (let entry of entries) {
+        if (entry.target === document.body) {
+					const { offsetHeight: height } = document.documentElement;
+          document.getElementById('height').textContent = height;
+					formsort.setQuestionSize(undefined /* width */, `${height}px`);
+        }
+      }
+    }
+    
+    const observer = new ResizeObserver(onBodyHeightChanged);
+    observer.observe(document.body);
+  </script>
+</body>
+</html>
