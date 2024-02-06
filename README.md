@@ -10,6 +10,7 @@ A repository of examples that use the [@formsort/custom-question-api](https://gi
 
 ## Scheduling
 
+- [Acuity](./acuity/) (Vanilla HTML)
 - [Calendly](./calendly-question/) (Svelte)
 
 ## Sizing
