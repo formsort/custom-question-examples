@@ -19,16 +19,3 @@ NOTE: Acuity does not provide a well-documented way to determine the details of 
 For this reason, ideally your Acuity question would be optional, so that users can continue even if they didn't actually schedule.
 
 Unfortunately it seems that Acuity does not natively support redirects at the end of forms either, so it is rather difficult to make this a truly well-integrated scheduler.
-
-## Developing
-
-```bash
-yarn
-yarn dev
-```
-
-## Building
-
-```bash
-yarn build
-```
