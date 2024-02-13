@@ -25,13 +25,23 @@
 			return;
 		}
 
-		const prefill: Record<string, string> = {};
+		const prefill: Record<string, string | Record<string, string>> = {};
 		for (const param of prefillParameters) {
 			const value = params.get(param);
 			if (value != null) {
 				prefill[param] = value;
 			}
 		}
+
+		const customAnswers: Record<string, string> = {};
+		for (let i = 1; i <= 10; i++) {
+			const key = `a${i}`;
+			const answer = params.get(key);
+			if (answer != null) {
+				customAnswers[key] = answer;
+			}
+		}
+		prefill['customAnswers'] = customAnswers;
 
 		Calendly.initInlineWidget({
 			url,

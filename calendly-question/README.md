@@ -18,7 +18,9 @@ A built version of the question itself is hosted on Github Pages: https://formso
 
 You can pass parameters like those that control [Hiding event details](https://help.calendly.com/hc/en-us/articles/223147027-Embed-options-overview?tab=advanced#5) directly in the URL.
 
-To pre-populate the user's name or email from data already collected within the form, you can set any of the URL search parameters `name`, `firstName`, `lastName`, or `email` using the Formsort templated string format, for example `?url=https://calendly.com/xyz/30min&email={{the_email}}`.
+To pre-populate the user's name or email from data already collected within the form, you can set any of the URL search parameters `name`, `firstName`, `lastName`, or `email` using the Formsort templated string format, for example `?email={{the_email}}&url=https://calendly.com/xyz/30min`. Note that the parameter is a top-level parameter to this custom question's URL, and not as a nested parameter of the `url` parameter itself.
+
+Custom answers can be passed using the parameters `a1` through `a10`. Please provide them as top-level parameters as well, for example `?a1=foo&a2=bar&email={{the_email}}&url=https://calendly.com/xyz/30min`.
 
 ## Note on the scheduled event
 
